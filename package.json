@@ -7,20 +7,20 @@
   "main": "lib/index.js",
   "license": "WTFPL",
   "devDependencies": {
-    "@babel/cli": "7.1.2",
-    "@babel/core": "7.1.2",
-    "@babel/preset-env": "7.1.0",
-    "@babel/register": "7.0.0",
+    "@babel/cli": "7.16.8",
+    "@babel/core": "7.16.12",
+    "@babel/preset-env": "7.16.11",
+    "@babel/register": "7.16.9",
     "mocha": "^2.2.5",
     "ramda": "^0.25.0"
   },
   "dependencies": {
-    "@babel/helper-module-imports": "^7.0.0",
-    "ramda": "*"
+    "@babel/helper-module-imports": "^7.0.0"
   },
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib",
-    "test": "mocha --require @babel/register"
+    "test": "mocha --require @babel/register",
+    "link": "npm link && cd ../toolbox && npm link babel-plugin-ramda"
   },
   "keywords": [
     "ramda",
