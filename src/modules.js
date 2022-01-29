@@ -1,4 +1,4 @@
-import {contains, mergeRight} from 'ramda';
+import { contains, mergeDeepRight } from 'ramda';
 import fs from 'fs';
 import Module from 'module';
 import path from 'path';
@@ -10,7 +10,7 @@ function getDirectories(srcPath) {
     fs.statSync(path.join(srcPath, filePath)).isDirectory());
 }
 
-const _ramdaPath = path.dirname(Module._resolveFilename('ramda', mergeRight(new Module, {
+const _ramdaPath = path.dirname(Module._resolveFilename('ramda', mergeDeepRight(new Module, {
   'paths': Module._nodeModulePaths(process.cwd())
 })));
 
@@ -20,8 +20,8 @@ const ramdaPath = _ramdaPath.slice(0, _ramdaPath.lastIndexOf('ramda') + 5);
 // We do not need to change the search path based on useES since src and es are both built from the
 // same source in Ramda, and the directories will therefore always have identical contents.
 var methods = fs.readdirSync(path.join(ramdaPath, 'src'))
-    .filter(name => path.extname(name) == '.js')
-    .map(name => path.basename(name, '.js'));
+  .filter(name => path.extname(name) == '.js')
+  .map(name => path.basename(name, '.js'));
 
 export default function resolveModule(useES, name) {
 
